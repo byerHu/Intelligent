@@ -1,44 +1,46 @@
 {% extends "home/nav.html" %}
+{% block css %}
+    <style>
+        body {
+            background: url('../../static/images/bg_index.jpg') no-repeat;
+            -webkit-background-size:100%;
+            background-size:100%;
+        }
+        .search-input {
+            border-radius: 15px;
+            outline:none;
+        }
+
+        .search-btn {
+            color: rgb(255, 255, 255);
+            background-color: rgb(50, 204, 255);
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0px;
+        }
+
+    </style>
+{% endblock %}
 {% block content %}
-<link rel="stylesheet" type="text/css" href="../static/css/index2.css">
-<div class="search bar6">
-  <form style="text-align: center;">
-    <input style="width:40%;height: 50px;text-align: center;" type="text" placeholder="请输入您要搜索的内容...">
-    <button style="width:10%;height: 50px;" type="submit"></button>
-  </form>
-</div>
-<div class="picshow">
-  <ul>
-    <li><a href="/"><i><img src="../static/images/b01.jpg"></i>
-      <div class="font">
-        <h3>哈哈</h3>
-      </div>
-      </a></li>
-    <li><a href="/"><i><img src="../static/images/b02.jpg"></i>
-      <div class="font">
-        <h3>ff</h3>
-      </div>
-      </a></li>
-    <li><a href="/"><i><img src="../static/images/b03.jpg"></i>
-      <div class="font">
-        <h3>aa</h3>
-      </div>
-      </a></li>
-    <li><a href="/"><i><img src="../static/images/b04.jpg"></i>
-      <div class="font">
-        <h3>dd</h3>
-      </div>
-      </a></li>
-    <li><a href="/"><i><img src="../static/images/b05.jpg"></i>
-      <div class="font">
-        <h3>dd</h3>
-      </div>
-      </a></li>
-  </ul>
-</div>
+    <div class="search" style="margin:200px auto;">
+        <form style="text-align: center;" action="{{ url_for('home.search') }}">
+            <input class="search-input" style="width:50%;height: 50px;text-align: center;" type="text"
+                   placeholder="请输入您要搜索的内容...">
+            <button class="search-btn" style="width:10%;height: 50px;" type="submit">搜索</button>
+        </form>
+    </div>
 
 
-<div class="blank"></div>
+
+    <div class="blank"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="knowledgePic" style="text-align: center;"></div>
+        </div>
+    </div>
 
 
 {% endblock %}
+
