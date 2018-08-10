@@ -1,38 +1,105 @@
 {% extends "home/nav.html" %}
+{% block css %}
+    <style>
+        .search-input {
+            border-radius: 15px;
+            outline: none;
+        }
 
+        .search-btn {
+            color: rgb(255, 255, 255);
+            background-color: rgb(50, 204, 255);
+        }
+
+        .search-a {
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            margin-right: 24px;
+        }
+
+        .select-a {
+            display: inline-block;
+            height: 20px;
+            line-height: 20px;
+            margin-left: 24px;
+        }
+
+        .btn-search-detail {
+            position: absolute;
+            right: 40px;
+            bottom: 40px;
+        }
+    </style>
+{% endblock %}
 {% block content %}
     <div class="row">
         <div class="col-md-1">LOGO</div>
         <div class="col-md-6">
             <div class="search">
-                <form style="text-align: center;" action="{{ url_for('home.search') }}">
-                    <input class="search-input" style="width:50%;height: 30px;text-align: center;" type="text"
+                <form action="{{ url_for('home.search') }}">
+                    <input class="search-input" style="width:75%;height: 30px;text-align: center;" type="text"
                            placeholder="请输入您要搜索的内容...">
-                    <button class="search-btn" style="width:10%;height: 30px;" type="submit">搜索</button>
+                    <button class="search-btn" style="width:20%;height: 30px;" type="submit">搜索</button>
                 </form>
             </div>
         </div>
-        <div class="col-md-5"></div>
+        <div class="col-md-5">
+            <a class="search-a" href="#">热搜</a>
+            <a class="search-a" href="#">盗窃</a>
+            <a class="search-a" href="#">知识产权</a>
+            <a class="search-a" href="#">合同</a>
+            <a class="search-a" href="#">离婚</a>
+        </div>
     </div>
 
-    <div class="row" style="border:1px solid #ccc;  ">
-        <div class="col-md-12 knowledgePic"></div>
+    <div class="row" style="margin-top:20px;">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+            地域筛选
+            <a class="select-a" href="#">不限</a>
+            <a class="select-a" href="#">选择区域</a>
+        </div>
+    </div>
+    <div class="row" style="margin-top:20px;">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+            文书类别
+            <a class="select-a" href="#">不限</a>
+            <a class="select-a" href="#">刑事案件</a>
+            <a class="select-a" href="#">民事案件</a>
+            <a class="select-a" href="#">行政案件</a>
+            <a class="select-a" href="#">赔偿案件</a>
+            <a class="select-a" href="#">执行案件</a>
+        </div>
+    </div>
+    <div class="row" style="border:1px solid #ccc;margin-top:20px;  ">
+        <div class="col-md-12 knowledgePic">
+            <button class="btn btn-info btn-search-detail">搜索明细</button>
+        </div>
     </div>
 {% endblock %}
 
 {% block js %}
-    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="{{ url_for('static',filename='js/d3.min.js') }}"></script>
     <script>
 
+        // 点击空白处消失div
+        $(document).click(function (event) {
+            var _con = $('.cirle');  // 设置目标区域
+            if (!_con.is(event.target) && _con.has(event.target).length === 0) {
+                $('#show-detail').remove();
+            }
+        });
         // http://blog.thomsonreuters.com/index.php/mobile-patent-suits-graphic-of-the-day/
         var links = [
-            {source: "同花顺", target: "IFIND", type: "resolved", rela: "主营产品"},
-            {source: "同花顺", target: "手机金融信息服务", type: "resolved", rela: "主营产品"},
-            {source: "同花顺", target: "互联网金融信息服务", type: "resolved", rela: "主营产品"},
-            {source: "同花顺", target: "网上行情交易系统", type: "resolved", rela: "主营产品"},
-            {source: "同花顺", target: "金融资讯及数据服务", type: "resolved", rela: "主营产品"},
-            {source: "同花顺", target: "互联网金融", type: "resolved", rela: "主营产品"},
-            {source: "同花顺", target: "金融服务", type: "resolved", rela: "主营产品"},
+            {source: "案件一", target: "条文一", type: "resolved", rela: "主营产品"},
+            {source: "案件一", target: "手机金融信息服务", type: "resolved", rela: "主营产品"},
+            {source: "案件一", target: "互联网金融信息服务", type: "resolved", rela: "主营产品"},
+            {source: "案件一", target: "网上行情交易系统", type: "resolved", rela: "主营产品"},
+            {source: "案件一", target: "金融资讯及数据服务", type: "resolved", rela: "主营产品"},
+            {source: "案件一", target: "互联网金融", type: "resolved", rela: "主营产品"},
+            {source: "案件一", target: "金融服务", type: "resolved", rela: "主营产品"},
             {source: "手机金融信息服务", target: "金融信息服务", type: "resolved", rela: "上位产品"},
             {source: "互联网金融信息服务", target: "金融信息服务", type: "resolved", rela: "上位产品"},
         ];
@@ -44,8 +111,8 @@
             link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
         });
 
-        var width = 1000,
-            height = 600;
+        var width = 1000;
+        var height = 600;
         var force = d3.layout.force()//layout将json格式转化为力学图可用的格式
             .nodes(d3.values(nodes))//设定节点数组
             .links(links)//设定连线数组
@@ -172,17 +239,31 @@
                 }
                 return color;
             })
-            .attr("r", 28)//设置圆圈半径
+            .attr({
+                "r": 28,
+                "class": "cirle"
+            })//设置圆圈半径
             .on("click", function (node) {
+                $('#show-detail').remove();
+                a();
                 //单击时让连接线加粗
                 edges_line.style("stroke-width", function (line) {
-                    console.log(line);
+                    {#                    console.log(line);#}
                     if (line.source.name == node.name || line.target.name == node.name) {
                         return 4;
                     } else {
                         return 0.5;
                     }
                 });
+                function a(ev) {
+                    var content = node.name;
+                    var e = event || window.event;
+                    x = e.clientX;
+                    y = e.clientY;
+                    text = "<div id='show-detail' style='color:red;font-size:20px;width:250px;height:100px;border:1px solid blue; position:fixed;left:" + x + "px;top:" + y + "px;'>" + content + "<button class='btn btn-info' style='position:absolute;bottom:5px;right:5px;'>查看详情</button></div>";
+                    $(".knowledgePic").append(text);
+                }
+
                 //d3.select(this).style('stroke-width',2);
             })
             .call(force.drag);//将当前选中的元素传到drag函数中，使顶点可以被拖动
