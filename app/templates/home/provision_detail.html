@@ -1,0 +1,154 @@
+{% extends "home/nav.html" %}
+
+{% block css %}
+    <style>
+        .search-input {
+            border-radius: 15px;
+            outline: none;
+        }
+
+        .search-btn {
+            color: rgb(255, 255, 255);
+            background-color: rgb(50, 204, 255);
+        }
+
+        .search-a {
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            margin-right: 24px;
+        }
+
+        .select-a {
+            display: inline-block;
+            height: 20px;
+            line-height: 20px;
+            margin-left: 24px;
+        }
+
+        .relative-law {
+            color: #555;
+            display: block;
+            border: 1px solid #ddd;
+            width: 88px;
+            height: 42px;
+            line-height: 42px;
+            background: rgb(50, 204, 255);
+            text-align: center;
+            border-radius: 4px 4px 0 0;
+            margin-bottom: 0px;
+        }
+
+        .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+            background-color: rgb(50, 204, 255);
+        }
+
+        .key-words {
+            color: #555;
+            display: block;
+            border: 1px solid #ddd;
+            width: 60px;
+            height: 35px;
+            line-height: 35px;
+            background: rgb(50, 204, 255);
+            text-align: center;
+            border-radius: 4px 4px 0 0;
+            margin-bottom: 0px;
+            margin-top: 5px;
+        }
+        .key-words-content {
+            height:100px;
+            border:1px solid #ddd;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-1">LOGO</div>
+        <div class="col-md-6">
+            <div class="search">
+                <form action="{{ url_for('home.search') }}">
+                    <input class="search-input" style="width:75%;height: 30px;text-align: center;" type="text"
+                           placeholder="请输入您要搜索的内容...">
+                    <button class="search-btn" style="width:20%;height: 30px;" type="submit">搜索</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <a class="search-a" href="#">热搜</a>
+            <a class="search-a" href="#">盗窃</a>
+            <a class="search-a" href="#">知识产权</a>
+            <a class="search-a" href="#">合同</a>
+            <a class="search-a" href="#">离婚</a>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:20px;">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+            地域筛选
+            <a class="select-a" href="#">不限</a>
+            <a class="select-a" href="#">选择区域</a>
+        </div>
+    </div>
+    <div class="row" style="margin-top:20px;">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+            文书类别
+            <a class="select-a" href="#">不限</a>
+            <a class="select-a" href="#">刑事案件</a>
+            <a class="select-a" href="#">民事案件</a>
+            <a class="select-a" href="#">行政案件</a>
+            <a class="select-a" href="#">赔偿案件</a>
+            <a class="select-a" href="#">执行案件</a>
+        </div>
+    </div>
+
+
+    {#    法律条文，适用案件#}
+    <div class="row" style="margin-top:30px;">
+        <div class="col-md-8">
+            <div>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
+                                                              data-toggle="tab">法律条文</a></li>
+                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"
+                                               data-toggle="tab">适用案件</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content" style="border:1px solid #ccc;height:180px;">
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                        法律条文xxx <br>
+                        xxx <br>
+                        xxx
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="profile">
+                        适用案件xxx <br>
+                        xxx <br>
+                        xxx
+                    </div>
+                </div>
+            </div>
+
+            <p class="key-words">关键词</p>
+            <div class="key-words-content">kk</div>
+        </div>
+
+        <div class="col-md-4">
+            <p class="relative-law">相关法条</p>
+            <ul class="list-group">
+                <li class="list-group-item">相关法条1</li>
+                <li class="list-group-item">相关法条2</li>
+                <li class="list-group-item">相关法条3</li>
+                <li class="list-group-item">相关法条4</li>
+                <li class="list-group-item">相关法条5</li>
+                <li class="list-group-item">相关法条6</li>
+                <li class="list-group-item">相关法条7</li>
+                <li class="list-group-item">相关法条8</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

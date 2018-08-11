@@ -260,7 +260,7 @@
                     var e = event || window.event;
                     x = e.clientX;
                     y = e.clientY;
-                    text = "<div id='show-detail' style='color:red;font-size:20px;width:250px;height:100px;border:1px solid blue; position:fixed;left:" + x + "px;top:" + y + "px;'>" + content + "<button class='btn btn-info' style='position:absolute;bottom:5px;right:5px;'>查看详情</button></div>";
+                    text = "<div id='show-detail' style='color:red;font-size:20px;width:250px;height:100px;border:1px solid blue; position:fixed;left:" + x + "px;top:" + y + "px;'>" + content + "<a href='{{ url_for('home.provision_detail') }}' type='button' class='btn btn-info' style='position:absolute;bottom:5px;right:5px;'>查看详情</a></div>";
                     $(".knowledgePic").append(text);
                 }
 
