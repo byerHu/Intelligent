@@ -1,0 +1,341 @@
+{% extends "home/nav.html" %}
+{% block css %}
+    <style>
+        .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+            background-color: rgb(50, 204, 255);
+        }
+
+        .key-words {
+            color: #555;
+            display: block;
+            border: 1px solid #ddd;
+            width: 60px;
+            height: 35px;
+            line-height: 35px;
+            background: rgb(50, 204, 255);
+            text-align: center;
+            border-radius: 4px 4px 0 0;
+            margin-bottom: 0px;
+            margin-top: 25px;
+        }
+
+        .key-words-content {
+            height: 100px;
+            border: 1px solid #ddd;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    {% include "home/grid.html" %}
+
+    <p style="color:#000;font-size:20px;font-weight: bolder;margin-top:20px;">案件标题：xxx案件</p>
+    <div class="row">
+        <div class="col-md-8">
+            <div>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
+                                                              data-toggle="tab">描述</a></li>
+                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"
+                                               data-toggle="tab">当事人</a>
+                    </li>
+                    <li role="presentation"><a href="#facts" aria-controls="facts" role="tab"
+                                               data-toggle="tab">事实</a>
+                    </li>
+                    <li role="presentation"><a href="#case-res" aria-controls="case-res" role="tab"
+                                               data-toggle="tab">案由</a>
+                    </li>
+                    <li role="presentation"><a href="#law-provision" aria-controls="law-provision" role="tab"
+                                               data-toggle="tab">法条</a>
+                    </li>
+                    <li role="presentation"><a href="#accusation" aria-controls="accusation" role="tab"
+                                               data-toggle="tab">罪名</a>
+                    </li>
+                    <li role="presentation"><a href="#judgment" aria-controls="judgment" role="tab"
+                                               data-toggle="tab">判决</a>
+                    </li>
+                    <li role="presentation"><a href="#view-judgment" aria-controls="view-judgment" role="tab"
+                                               data-toggle="tab">查看判决书</a>
+                    </li>
+
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content" style="border:1px solid #ccc;height:180px;">
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                        法律条文xxx <br>
+                        xxx <br>
+                        xxx
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="profile">
+                        xxx
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="facts">
+                        2
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="case-res">
+                        3
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="law-provision">
+                        9
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="accusation">
+                        4
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="judgment">
+                        5
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="view-judgment">
+                        6
+                    </div>
+                </div>
+
+
+                <p class="key-words">关键词</p>
+                <div class="key-words-content">kk</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#similiar-case" aria-controls="similiar-case"
+                                                              role="tab"
+                                                              data-toggle="tab">相似案件</a></li>
+                    <li role="presentation"><a href="#trend-distribution" aria-controls="trend-distribution" role="tab"
+                                               data-toggle="tab">态势分布</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content" style="border:1px solid #ccc;height:150px;">
+                    <div role="tabpanel" class="tab-pane active" id="similiar-case">
+                        <div class="similiar-case-pic">
+                            <svg width="100%" height="100%"></svg>
+
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="trend-distribution">
+                        fhtrj
+                    </div>
+                </div>
+
+
+                {#判决分布-态势分布#}
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#judgment-distribution"
+                                                              aria-controls="judgment-distribution" role="tab"
+                                                              data-toggle="tab">判决分布</a></li>
+                    <li role="presentation"><a href="#trend-distribution-2" aria-controls="trend-distribution-2"
+                                               role="tab"
+                                               data-toggle="tab">态势分布</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" style="border:1px solid #ccc;height:150px;">
+                    <div role="tabpanel" class="tab-pane active" id="judgment-distribution">
+                        <div class="trend-distribution-2">
+                            <svg width="100%" height="100%"></svg>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="trend-distribution-2">
+                        <div class="trend-distribution-2">
+                            <svg width="100%" height="100%"></svg>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script>
+                                //确定画布的大小
+                                var width = 350;
+                                var height = 140;
+                                //在 body 里添加一个 SVG 画布
+                                var svg = d3.select(".similiar-case-pic svg")
+                                    .append("svg")
+                                    .attr("width", width)
+                                    .attr("height", height);
+                                //定义画布周围空白的地方
+                                var padding = {left: 30, right: 30, top: 20, bottom: 20};
+                                //定义一个数组
+                                var dataset = [10, 20, 30, 40, 30, 20, 10, 5];
+                                //x轴的比例尺
+                                var xScale = d3.scale.ordinal()
+                                    .domain(d3.range(dataset.length))
+                                    .rangeRoundBands([0, width - padding.left - padding.right]);
+                                //y轴的比例尺
+                                var yScale = d3.scale.linear()
+                                    .domain([0, d3.max(dataset)])
+                                    .range([height - padding.top - padding.bottom, 0]);
+                                //定义x轴
+                                var xAxis = d3.svg.axis()
+                                    .scale(xScale)
+                                    .orient("bottom");
+                                //定义y轴
+                                var yAxis = d3.svg.axis()
+                                    .scale(yScale)
+                                    .orient("left");
+                                //矩形之间的空白
+                                var rectPadding = 4;
+                                //添加矩形元素
+                                var rects = svg.selectAll(".MyRect")
+                                    .data(dataset)
+                                    .enter()
+                                    .append("rect")
+                                    .attr("class", "MyRect")
+                                    .attr("fill", "steelblue")
+                                    .attr("transform", "translate(" + padding.left + "," + padding.top + ")")
+                                    .attr("x", function (d, i) {
+                                        return xScale(i) + rectPadding / 2;
+                                    })
+                                    .attr("y", function (d) {
+                                        return yScale(d);
+                                    })
+                                    .attr("width", xScale.rangeBand() - rectPadding)
+                                    .attr("height", function (d) {
+                                        return height - padding.top - padding.bottom - yScale(d);
+                                    })
+                                    .attr("fill", function (d, i) {
+                                        return getColor(i)
+                                    });
+
+                                function getColor(i) {
+                                    var a = ["red", "blue", "orange", "green", "yellow", "gray", "purple"];
+                                    return a[i];
+                                }
+                                //添加文字元素
+                                var texts = svg.selectAll(".MyText")
+                                    .data(dataset)
+                                    .enter()
+                                    .append("text")
+                                    .attr("class", "MyText")
+                                    .attr("fill", "white")
+                                    .attr("text-anchor", "middle")
+                                    .attr("transform", "translate(" + padding.left + "," + padding.top + ")")
+                                    .attr("x", function (d, i) {
+                                        return xScale(i) + rectPadding / 2;
+                                    })
+                                    .attr("y", function (d) {
+                                        return yScale(d);
+                                    })
+                                    .attr("dx", function () {
+                                        return (xScale.rangeBand() - rectPadding) / 2;
+                                    })
+                                    .attr("dy", function (d) {
+                                        return 20;
+                                    })
+                                    .text(function (d) {
+                                        return d;
+                                    });
+                                //添加x轴
+                                svg.append("g")
+                                    .attr("class", "axis")
+                                    .attr("transform", "translate(" + padding.left + "," + (height - padding.bottom) + ")")
+                                    .call(xAxis);
+                                //添加y轴
+                                svg.append("g")
+                                    .attr("class", "axis")
+                                    .attr("transform", "translate(" + padding.left + "," + padding.top + ")")
+                                    .call(yAxis);
+
+                            </script>
+    <script>
+                                //确定画布的大小
+                                var width = 350;
+                                var height = 140;
+                                //在 body 里添加一个 SVG 画布
+                                var svg = d3.select(".trend-distribution-2 svg")
+                                    .append("svg")
+                                    .attr("width", width)
+                                    .attr("height", height);
+                                //定义画布周围空白的地方
+                                var padding = {left: 30, right: 30, top: 20, bottom: 20};
+                                //定义一个数组
+                                var dataset = [10, 20, 30, 40, 30, 20, 10, 5];
+                                //x轴的比例尺
+                                var xScale = d3.scale.ordinal()
+                                    .domain(d3.range(dataset.length))
+                                    .rangeRoundBands([0, width - padding.left - padding.right]);
+                                //y轴的比例尺
+                                var yScale = d3.scale.linear()
+                                    .domain([0, d3.max(dataset)])
+                                    .range([height - padding.top - padding.bottom, 0]);
+                                //定义x轴
+                                var xAxis = d3.svg.axis()
+                                    .scale(xScale)
+                                    .orient("bottom");
+                                //定义y轴
+                                var yAxis = d3.svg.axis()
+                                    .scale(yScale)
+                                    .orient("left");
+                                //矩形之间的空白
+                                var rectPadding = 4;
+                                //添加矩形元素
+                                var rects = svg.selectAll(".MyRect")
+                                    .data(dataset)
+                                    .enter()
+                                    .append("rect")
+                                    .attr("class", "MyRect")
+                                    .attr("fill", "steelblue")
+                                    .attr("transform", "translate(" + padding.left + "," + padding.top + ")")
+                                    .attr("x", function (d, i) {
+                                        return xScale(i) + rectPadding / 2;
+                                    })
+                                    .attr("y", function (d) {
+                                        return yScale(d);
+                                    })
+                                    .attr("width", xScale.rangeBand() - rectPadding)
+                                    .attr("height", function (d) {
+                                        return height - padding.top - padding.bottom - yScale(d);
+                                    })
+                                    .attr("fill", function (d, i) {
+                                        return getColor(i)
+                                    });
+
+                                function getColor(i) {
+                                    var a = ["red", "blue", "orange", "green", "yellow", "gray", "purple"];
+                                    return a[i];
+                                }
+                                //添加文字元素
+                                var texts = svg.selectAll(".MyText")
+                                    .data(dataset)
+                                    .enter()
+                                    .append("text")
+                                    .attr("class", "MyText")
+                                    .attr("fill", "white")
+                                    .attr("text-anchor", "middle")
+                                    .attr("transform", "translate(" + padding.left + "," + padding.top + ")")
+                                    .attr("x", function (d, i) {
+                                        return xScale(i) + rectPadding / 2;
+                                    })
+                                    .attr("y", function (d) {
+                                        return yScale(d);
+                                    })
+                                    .attr("dx", function () {
+                                        return (xScale.rangeBand() - rectPadding) / 2;
+                                    })
+                                    .attr("dy", function (d) {
+                                        return 20;
+                                    })
+                                    .text(function (d) {
+                                        return d;
+                                    });
+                                //添加x轴
+                                svg.append("g")
+                                    .attr("class", "axis")
+                                    .attr("transform", "translate(" + padding.left + "," + (height - padding.bottom) + ")")
+                                    .call(xAxis);
+                                //添加y轴
+                                svg.append("g")
+                                    .attr("class", "axis")
+                                    .attr("transform", "translate(" + padding.left + "," + padding.top + ")")
+                                    .call(yAxis);
+
+                            </script>
+{% endblock %}
