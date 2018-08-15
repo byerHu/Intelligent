@@ -27,6 +27,12 @@ def case_desc():
     return render_template('home/case_desc.html')
 
 
+# 搜索明细
+@home.route('/search/detail')
+def search_detail():
+    return render_template('home/search_detail.html')
+
+
 # 法律条文
 @home.route('/legalprovision/')
 def legalprovision():

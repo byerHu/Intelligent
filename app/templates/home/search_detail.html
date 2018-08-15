@@ -1,0 +1,47 @@
+{% extends "home/nav.html" %}
+
+{% block css %}
+    <style>
+        .search-detail-classify {
+            display: block;
+            width: 80px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            background: red;
+            border: 1px solid #dddddd;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    {% include "home/grid.html" %}
+
+    <div class="row" style="margin-top: 40px;">
+        <div class="col-md-6">
+            <p class="search-detail-classify">法律条文</p>
+            <ul class="list-group">
+                <li class="list-group-item"><a href="{{ url_for('home.provision_detail') }}">法条1</a></li>
+                <li class="list-group-item"><a href="{{ url_for('home.provision_detail') }}">法条2</a></li>
+                <li class="list-group-item"><a href="{{ url_for('home.provision_detail') }}">法条3</a></li>
+                <li class="list-group-item"><a href="{{ url_for('home.provision_detail') }}">法条4</a></li>
+                <li class="list-group-item"><a href="{{ url_for('home.provision_detail') }}">法条5</a></li>
+                <li class="list-group-item"><a href="{{ url_for('home.provision_detail') }}">法条6</a></li>
+                <li class="list-group-item"><a href="{{ url_for('home.provision_detail') }}">法条7</a></li>
+                <li class="list-group-item"><a href="{{ url_for('home.provision_detail') }}">法条8</a></li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <p class="search-detail-classify">相关案件</p>
+            <ul class="list-group">
+                <li class="list-group-item"><a href="{{ url_for('home.case_desc') }}">相关案件1</a></li>
+                <li class="list-group-item"><a href="{{ url_for('home.case_desc') }}">相关案件2</a></li>
+                <li class="list-group-item"><a href="{{ url_for('home.case_desc') }}">相关案件3</a></li>
+                <li class="list-group-item"><a href="{{ url_for('home.case_desc') }}">相关案件4</a></li>
+                <li class="list-group-item"><a href="{{ url_for('home.case_desc') }}">相关案件5</a></li>
+                <li class="list-group-item"><a href="{{ url_for('home.case_desc') }}">相关案件6</a></li>
+                <li class="list-group-item"><a href="{{ url_for('home.case_desc') }}">相关案件7</a></li>
+                <li class="list-group-item"><a href="{{ url_for('home.case_desc') }}">相关案件8</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
