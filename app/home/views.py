@@ -1,6 +1,11 @@
 # coding:utf8
 from . import home  # 从当前目录导入home蓝图
-from flask import render_template
+from flask import render_template, request, flash, redirect, url_for, session
+from app.home.forms import RegisterForm, LoginForm
+from app import app
+from app.models import User
+from app import db, app
+from flask_login import login_user, logout_user, login_required, current_user
 
 
 # 首页
@@ -40,15 +45,55 @@ def legalprovision():
 
 
 # 注册页
-@home.route('/register/')
+@home.route('/register/', methods=['GET', 'POST'])
 def register():
-    return render_template('home/register.html')
+    form = RegisterForm()
+    if form.validate_on_submit():
+        data = form.data
+        # print(data)
+        user = User.query.filter_by(username=data["username"]).first()
+        print(user)
+        if user:
+            flash("用户名已经注册!", "err")
+            return redirect(url_for('home.register'))
+        user = User(
+            username=data["username"],
+            pwd=data["pwd"]
+        )
+        db.session.add(user)
+        db.session.commit()
+        flash("注册成功,请登录", "ok")
+        return redirect(url_for('home.login'))
+    return render_template('home/register.html', form=form)
 
 
 # 登录页
-@home.route('/login/')
+@home.route('/login/', methods=['GET', 'POST'])
 def login():
-    return render_template('home/login.html')
+    form = LoginForm()
+    if form.validate_on_submit():
+        data = form.data
+        user = User.query.filter_by(username=data["username"]).first()
+        if not user:
+            flash("用户不存在！", "err1")
+        elif data['pwd'] != user.pwd:
+            flash("密码错误!", "err2")
+        else:
+            login_user(user)
+            # 登录成功,保存会话
+            session[user.username] = data['username']
+            return redirect(url_for('home.index'))
+
+    return render_template('home/login.html', form=form)
+
+
+# 登出
+@home.route('/logout', methods=['GET', 'POST'])
+@login_required
+def logout():
+    logout_user()
+    flash(u'您已退出登陆')
+    return redirect(url_for('home.login'))
 
 
 # 案件研判

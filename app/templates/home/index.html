@@ -1,4 +1,11 @@
+{% if not username %}
 {% extends "home/nav.html" %}
+{% endif %}
+{% if username %}
+    {% extends "home/nav2.html" %}
+{% endif %}
+
+{{ username }}
 {% block css %}
     <style>
         body {
