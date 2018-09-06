@@ -1,5 +1,729 @@
 {% extends "home/nav.html" %}
+{% block css %}
+    <style>
+        a {
+            text-decoration: none;
+        }
 
+        body {
+
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .contain_bottom {
+            width: 100%;
+            height: 415px;
+        }
+
+        .contain_bottom_left {
+            width: 100px;
+            float: left;
+        }
+
+        .choose_ul {
+            list-style-type: none;
+            margin: 0px;
+            padding: 0px;
+
+        }
+
+        .choose_item_left {
+            width: 90px;
+            display: inline-block;
+            height: 40px;
+            line-height: 40px;
+            margin-top: 10px;
+            background-color: gray;
+            text-align: center;
+
+        }
+
+        .choose_item_left1 {
+            width: 90px;
+            height: 40px;
+            display: inline-block;
+            text-align: center;
+            line-height: 40px;
+            background-color: rgb(50, 204, 255);
+
+        }
+
+        .choose_item_left:hover {
+            background-color: rgb(50, 204, 255);
+        }
+
+
+        .contain_bottom_right {
+            width: 200px;
+            height: auto;
+            float: right;
+            margin-top: 10px;
+        }
+
+        .contain_bottom_r_top {
+            margin-left: 10px;
+            width: 140px;
+            background-color: rgb(50, 204, 255);
+            height: 30px;
+            text-align: center;
+        }
+
+        .contain_bottom_r_mi {
+            margin-left: 10px;
+            width: 140px;
+            height: 310px;
+            border: 1px solid gray;
+
+        }
+
+        .contain_bottom_r_top_a {
+            display: inline-block;
+            height: 30px;
+            width: 140px;
+            line-height: 30px;
+            font-color: black;
+
+        }
+
+
+
+        .contain_bottom_r_bo {
+            margin-left: 10px;
+            width: 140px;
+            background-color: rgb(50, 204, 255);
+            height: 30px;
+            text-align: center;
+            margin-top: 45px;
+        }
+
+        .wrapp {
+            width: 830px;
+            height: 415px;
+
+            float: left;
+            margin-top: 10px;
+            text-align: center;
+            border: 1px solid gray;
+            background-color: burlywood;
+        }
+
+        .mapTipText {
+            width: 283px;
+            height: 110px;
+            background-color: #ffffff;
+        }
+
+        .mapTipText .mapTipImg {
+            height: 66px;
+            width: 66px;
+            float: left;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: -12px 5px 0 -12px;
+        }
+
+        .mapTipText .mapTipList {
+            float: left;
+            margin-left: 4px;
+            border: 1px solid gray;
+        }
+
+        .mapTipText .mapTipList h2 {
+            text-align: left;
+        }
+
+        .mapTipText .mapTipList h2 a {
+            font-size: 24px;
+            color: #262626;
+            text-decoration: none;
+        }
+
+        .mapTipText .mapTipList h2 a:hover {
+            color: #0085d2;
+        }
+
+        .mapTipText .mapTipList h2 a span {
+            font-size: 16px;
+            margin-left: 3px;
+        }
+
+        .mapTipText .mapTipList ul {
+            width: 203px;
+            padding-right: 10px;
+        }
+
+        .mapTipText .mapTipList ul li {
+            list-style: none;
+            float: left;
+            padding: 7px 3px 0 3px;
+        }
+
+        .mapTipText .mapTipList ul li a {
+            color: #262626;
+            text-decoration: none;
+        }
+
+        .mapTipText .mapTipList ul li a:hover {
+            background-color: #2ebcfe;
+            color: #ffffff;
+        }
+
+
+    </style>
+{% endblock %}
 {% block content %}
+    {% include "home/grid.html" %}
+    <div class="container">
 
+
+        <div class="contain_bottom">
+            <div class="contain_bottom_left">
+                <ul class="choose_ul">
+                    <li class="choose_item_left">
+                        <a href="#" class="choose_item_left1" onmouseover="show1()">所有</a>
+                    </li>
+                    <li class="choose_item_left">
+                        <a href="#" class="choose_item_left1" onmouseover="show2()">刑事案件</a>
+                    </li>
+                    <li class="choose_item_left">
+                        <a href="#" class="choose_item_left1" onmouseover="show3()">民事案件</a>
+                    </li>
+                    <li class="choose_item_left">
+                        <a href="" # class="choose_item_left1" onmouseover="show4()">行政案件</a>
+                    </li>
+                    <li class="choose_item_left">
+                        <a href="" # class="choose_item_left1" onmouseover="show5()">赔偿案件</a>
+                    </li>
+                    <li class="choose_item_left">
+                        <a href="" # class="choose_item_left1" onmouseover="show6()">执行案件</a>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="wrapp" id="contain_bottom_middle2">
+                <div class="wrap" style="margin-left:-70px;">
+                    <div class="itemCon" style="float: left">
+                        <div id="ChinaMap"></div>
+                        <div id="stateTip"
+                             style="position: absolute;left: 100%;text-align: left;display: inline;"></div>
+                    </div>
+
+                    <div id="mapTipContent" style="width: 650px;margin: 0 auto;display: none">
+                        <div class="mapTipText mapTipText0" id="">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/heilongjiang.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">黑龙江<span>Heilongjiang</span></a></h2>
+                                <ul>
+                                    <li><a href="">哈尔滨</a></li>
+                                    <li><a href="">漠河</a></li>
+                                    <li><a href="">五大连池</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText1">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">吉林<span>Jilin</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText2">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/liaoning.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">辽宁<span>Liaoning</span></a></h2>
+                                <ul>
+                                    <li><a href="">大连</a></li>
+                                    <li><a href="">丹东</a></li>
+                                    <li><a href="">沈阳</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mapTipText mapTipText3">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">河北<span>hebei</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText4">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">山东<span>shandong</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText5">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">江苏<span>jiangsu</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText6">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">浙江<span>zhejiang</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText7">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">安徽<span>anhui</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText8">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">河南<span>henan</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText9">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">山西<span>shanxi</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText10">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">陕西<span>shaanxi</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mapTipText mapTipText11">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">甘肃<span>gansu</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mapTipText mapTipText12">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">湖北<span>hubei</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText13">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">江西<span>jiangxi</span></a></h2>
+                                <ul>
+                                    <li><a href="">大连</a></li>
+                                    <li><a href="">丹东</a></li>
+                                    <li><a href="">沈阳</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mapTipText mapTipText14">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">福建<span>fujian</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText15">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">湖南<span>hunan</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText16">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">贵州<span>guizhou</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText17">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">四川<span>sichuan</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText18">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">云南<span>yunnan</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText19">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">青海<span>qinghai</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText20">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">海南<span>hainan</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText21">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">上海<span>shanghai</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mapTipText mapTipText22">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">重庆<span>chongqing</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText23">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">天津<span>tianjin</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText24">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">北京<span>beijing</span></a></h2>
+                                <ul>
+                                    <li><a href="">大连</a></li>
+                                    <li><a href="">丹东</a></li>
+                                    <li><a href="">沈阳</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mapTipText mapTipText25">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">宁夏<span>ningxia</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText26">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">内蒙古<span>neimongol</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText27">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">广西<span>guangxi</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText28">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">新疆<span>xinjiang</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText29">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">西藏<span>xizang</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText30">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">广东<span>guangdong</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText31">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">香港<span>hongkong</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mapTipText mapTipText32">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">台湾<span>taiwan</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mapTipText mapTipText33">
+                            <div class="mapTipImg"><img src="{{ url_for('static',filename='images/jilin.jpg') }}" alt=""/></div>
+                            <div class="mapTipList">
+                                <h2><a href="">澳门<span>macau</span></a></h2>
+                                <ul>
+                                    <li><a href="">长白山</a></li>
+                                    <li><a href="">长春</a></li>
+                                    <li><a href="">延吉</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="contain_bottom_right">
+                <div class="contain_bottom_r_top">
+
+                    <a href="#" class="contain_bottom_r_top_a">汇总</a>
+                </div>
+                <div class="contain_bottom_r_mi" id="contain_bottom_r_mi_">
+
+                </div>
+
+                <div class="contain_bottom_r_bo">
+                    <a href="{{ url_for("home.search_detail") }}" class="contain_bottom_r_top_a">文书明细</a>
+                </div>
+                <div></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="control-sidebar-bg"></div>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/jquery-2.1.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/nav.js') }}"></script>
+
+
+
+{% endblock %}
+
+
+{% block js %}
+    <script src="{{ url_for('static',filename='js/lib/jquery-1.11.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/lib/raphael-min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/res/chinaMapConfig.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/map-min.js') }}"></script>
+    <script>
+        $(function () {
+            $('#ChinaMap').SVGMap({
+                mapWidth: 926,
+                mapHeight: 396
+            });
+        });
+
+        function show1() {
+
+            var case_sum = document.getElementById("contain_bottom_r_mi_");
+            case_sum.innerHTML = "<span>收录判决文书XX件</span>" +
+                "<span>刑事案件XX件</span><br/>" + "<span>民事案件XX件</span><br/>" + "<span>.......</span>"
+
+
+        }
+
+        function show2() {
+
+            var case_sum = document.getElementById("contain_bottom_r_mi_");
+            case_sum.innerHTML = "<span>收录刑事案件XX件</span>" +
+                "<span>小类1 XX件</span><br/>" + "<span>小类2 XX件</span>"
+
+
+        }
+
+        function show3() {
+            var case_sum = document.getElementById("contain_bottom_r_mi_");
+            case_sum.innerHTML = "<span>收录民事案件XX件</span>" +
+                "<span>小类1 XX件</span><br/>" + "<span>小类2 XX件</span>"
+
+        }
+
+        function show4() {
+            var case_sum = document.getElementById("contain_bottom_r_mi_");
+            case_sum.innerHTML = "<span>收录行政案件XX件</span>" +
+                "<span>小类1 XX件</span><br/>" + "<span>小类2 XX件</span>"
+
+        }
+
+        function show5() {
+            var case_sum = document.getElementById("contain_bottom_r_mi_");
+            case_sum.innerHTML = "<span>收录赔偿案件XX件</span>" +
+                "<span>小类1 XX件</span><br/>" + "<span>小类2 XX件</span>"
+
+        }
+
+        function show6() {
+            var case_sum = document.getElementById("contain_bottom_r_mi_");
+            case_sum.innerHTML = "<span>收录执行案件XX件</span>" +
+                "<span>小类1 XX件</span><br/>" + "<span>小类2 XX件</span>"
+
+        }
+    </script>
 {% endblock %}
