@@ -1,11 +1,12 @@
 # coding:utf8
 from . import home  # 从当前目录导入home蓝图
 from flask import render_template, request, flash, redirect, url_for, session
-from app.home.forms import RegisterForm, LoginForm
+from app.home.forms import RegisterForm, LoginForm, SearchForm
 from app import app
-from app.models import User
+from app.models import User, Law
 from app import db, app
 from flask_login import login_user, logout_user, login_required, current_user
+from sqlalchemy import and_
 
 
 # 首页
@@ -15,10 +16,18 @@ def index():
 
 
 # 搜索页
-@home.route('/search/')
+@home.route('/search/', methods=['GET', 'POST'])
 @login_required
 def search():
-    return render_template('home/search.html')
+    data = request.args.get('search_key')
+    print(data)
+    words = ['%' + data + '%']
+    rule = and_(*[Law.key.like(w) for w in words])
+    res = Law.query.filter(rule).first()
+    if not res:
+        return redirect(url_for('home.index'))
+    else:
+        return render_template('home/search.html', res=res)
 
 
 # 条文详情页
@@ -57,7 +66,6 @@ def register():
         data = form.data
         # print(data)
         user = User.query.filter_by(username=data["username"]).first()
-        print(user)
         if user:
             flash("用户名已经注册!", "err")
             return redirect(url_for('home.register'))

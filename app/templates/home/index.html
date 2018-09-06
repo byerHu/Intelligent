@@ -1,11 +1,4 @@
-{% if not username %}
 {% extends "home/nav.html" %}
-{% endif %}
-{% if username %}
-    {% extends "home/nav2.html" %}
-{% endif %}
-
-{{ username }}
 {% block css %}
     <style>
         body {
@@ -32,9 +25,10 @@
 {% endblock %}
 {% block content %}
     <div class="search" style="margin:200px auto;">
-        <form style="text-align: center;" action="{{ url_for('home.search') }}">
+        <form style="text-align: center;" action="{{ url_for('home.search') }}" method="get">
             <input class="search-input" style="width:50%;height: 50px;text-align: center;" type="text"
-                   placeholder="请输入您要搜索的内容...">
+                   placeholder="请输入您要搜索的内容..." name="search_key" required>
+
             <button class="search-btn" style="width:10%;height: 50px;" type="submit">搜索</button>
         </form>
     </div>
