@@ -16,30 +16,35 @@ def index():
 
 # 搜索页
 @home.route('/search/')
+@login_required
 def search():
     return render_template('home/search.html')
 
 
 # 条文详情页
 @home.route('/provision/detail')
+@login_required
 def provision_detail():
     return render_template('home/provision_detail.html')
 
 
 # 案件描述页
 @home.route('/case/desc')
+@login_required
 def case_desc():
     return render_template('home/case_desc.html')
 
 
 # 搜索明细
 @home.route('/search/detail')
+@login_required
 def search_detail():
     return render_template('home/search_detail.html')
 
 
 # 法律条文
 @home.route('/legalprovision/')
+@login_required
 def legalprovision():
     return render_template('home/legalprovision.html')
 
@@ -98,11 +103,13 @@ def logout():
 
 # 案件研判
 @home.route('/case/judge')
+@login_required
 def case_judge():
     return render_template('home/case_judge.html')
 
 
 # 判决文书
 @home.route('/judgmentdoc/')
+@login_required
 def judgmentdoc():
     return render_template('home/judgmentdoc.html')
