@@ -403,3 +403,31 @@ None
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 250-502-475
+183.236.0.88 - - [06/Sep/2018 13:44:59] "GET /judgmentdoc/ HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 13:45:04] "GET / HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 13:45:05] "GET /logout HTTP/1.1" 302 -
+183.236.0.88 - - [06/Sep/2018 13:45:05] "GET /login/ HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 13:45:09] "POST /login/ HTTP/1.1" 302 -
+183.236.0.88 - - [06/Sep/2018 13:45:09] "GET / HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 13:45:13] "GET /legalprovision/ HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 13:45:13] "GET /static/css/index2.css HTTP/1.1" 404 -
+183.236.0.88 - - [06/Sep/2018 13:45:14] "GET /judgmentdoc/ HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 13:45:14] "GET /case/judge HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 13:45:17] "GET /judgmentdoc/ HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 13:45:17] "GET /legalprovision/ HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 13:45:17] "GET /static/css/index2.css HTTP/1.1" 404 -
+183.236.0.88 - - [06/Sep/2018 13:45:18] "GET / HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 14:30:36] "GET /search/? HTTP/1.1" 200 -
+47.100.38.232 - - [06/Sep/2018 14:46:24] "GET / HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 15:45:37] "GET /static/css/bootstrap.min.css.map HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 15:45:38] "GET /static/js/jquery.min.map HTTP/1.1" 404 -
+183.236.0.88 - - [06/Sep/2018 15:45:40] "GET /static/js/jquery.min.map HTTP/1.1" 404 -
+183.236.0.88 - - [06/Sep/2018 15:46:05] "GET /static/js/jquery.min.map HTTP/1.1" 404 -
+183.236.0.88 - - [06/Sep/2018 15:47:43] "GET /static/js/jquery.min.map HTTP/1.1" 404 -
+183.236.0.88 - - [06/Sep/2018 15:47:44] "GET /static/js/jquery.min.map HTTP/1.1" 404 -
+183.236.0.88 - - [06/Sep/2018 15:48:17] "GET /static/js/jquery.min.map HTTP/1.1" 404 -
+183.236.0.88 - - [06/Sep/2018 15:48:19] "GET /static/js/jquery.min.map HTTP/1.1" 404 -
+ * Detected change in '/var/www/Intelligent/app/home/forms.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 250-502-475
