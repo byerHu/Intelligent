@@ -431,3 +431,64 @@ None
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 250-502-475
+183.236.0.88 - - [06/Sep/2018 16:06:03] "GET / HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 16:06:10] "GET /search/?search_key=fe HTTP/1.1" 302 -
+183.236.0.88 - - [06/Sep/2018 16:06:10] "GET / HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 16:06:13] "GET /search/?search_key=%E6%8A%A2%E5%8A%AB HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 16:06:20] "GET /search/detail HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 16:06:44] "GET /search/detail HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 16:06:46] "GET /case/desc HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 16:06:54] "GET /search/? HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2309, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2295, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1741, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/usr/local/lib/python3.5/dist-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/var/www/Intelligent/app/home/views.py", line 24, in search
+    words = ['%' + data + '%']
+TypeError: Can't convert 'NoneType' object to str implicitly
+183.236.0.88 - - [06/Sep/2018 16:06:54] "GET /search/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 16:06:55] "GET /search/?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 16:06:55] "GET /search/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 16:06:55] "GET /search/?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 16:06:55] "GET /search/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+183.236.0.88 - - [06/Sep/2018 16:06:55] "GET /search/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+183.192.164.85 - - [06/Sep/2018 16:07:11] "GET /search/?search_key=fe HTTP/1.1" 302 -
+183.192.164.85 - - [06/Sep/2018 16:07:11] "GET /login/?next=%2Fsearch%2F%3Fsearch_key%3Dfe HTTP/1.1" 200 -
+183.192.164.85 - - [06/Sep/2018 16:07:12] "GET /static/js/jquery-2.1.1.min.js HTTP/1.1" 200 -
+183.192.164.85 - - [06/Sep/2018 16:07:14] "GET /static/js/bootstrap.min.js HTTP/1.1" 200 -
+121.51.32.144 - - [06/Sep/2018 16:07:14] "GET /search/?search_key=??¡é??? HTTP/1.1" 302 -
+183.192.164.85 - - [06/Sep/2018 16:07:14] "GET /static/js/nav.js HTTP/1.1" 200 -
+121.51.32.144 - - [06/Sep/2018 16:07:18] "GET /login/?next=%2Fsearch%2F%3Fsearch_key%3D%253F%253F%C2%A1%C3%A9%253F%253F%253F HTTP/1.1" 200 -
+121.51.32.144 - - [06/Sep/2018 16:07:18] "GET /static/js/jquery-2.1.1.min.js HTTP/1.1" 200 -
+183.192.164.90 - - [06/Sep/2018 16:07:20] "GET /search/detail HTTP/1.1" 302 -
+183.192.164.90 - - [06/Sep/2018 16:07:20] "GET /login/?next=%2Fsearch%2Fdetail HTTP/1.1" 200 -
+183.192.164.90 - - [06/Sep/2018 16:07:21] "GET /static/js/jquery-2.1.1.min.js HTTP/1.1" 200 -
+183.192.164.90 - - [06/Sep/2018 16:07:22] "GET /static/js/bootstrap.min.js HTTP/1.1" 200 -
+183.192.164.90 - - [06/Sep/2018 16:07:22] "GET /static/js/nav.js HTTP/1.1" 200 -
+121.51.32.144 - - [06/Sep/2018 16:07:22] "GET /static/js/bootstrap.min.js HTTP/1.1" 200 -
+121.51.32.144 - - [06/Sep/2018 16:07:54] "GET /case/desc HTTP/1.1" 302 -
+121.51.32.144 - - [06/Sep/2018 16:07:54] "GET /login/?next=%2Fcase%2Fdesc HTTP/1.1" 200 -
+183.192.164.90 - - [06/Sep/2018 16:07:55] "GET /search/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+183.192.164.214 - - [06/Sep/2018 16:07:56] "GET /search/?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+121.51.32.144 - - [06/Sep/2018 16:08:05] "GET /static/js/jquery-2.1.1.min.js HTTP/1.1" 200 -
+121.51.32.144 - - [06/Sep/2018 16:09:25] "GET /static/js/bootstrap.min.js HTTP/1.1" 200 -
+121.51.32.144 - - [06/Sep/2018 16:09:29] "GET /static/js/nav.js HTTP/1.1" 200 -
