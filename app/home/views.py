@@ -22,7 +22,7 @@ def search():
     data = request.args.get('search_key')
     print(data)
     words = ['%' + data + '%']
-    rule = and_(*[Law.key.like(w) for w in words])
+    rule = and_(*[Law.keywords.like(w) for w in words])
     res = Law.query.filter(rule).first()
     if not res:
         return redirect(url_for('home.index'))

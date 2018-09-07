@@ -22,14 +22,18 @@ class User(db.Model, UserMixin):
 
 # 法律条文数据模型
 class Law(db.Model):
-    __tablename__ =  "law"
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)  # 编号
-    catalog = db.Column(db.String(100), unique=True)  # 目录
-    classes = db.Column(db.String(100))  # 类别
-    key = db.Column(db.String(100)) # 关键词
-    time = db.Column(db.DateTime, index=True, default=datetime.now)  # 颁布时间
-    addr = db.Column(db.String(100))
-    content = db.Column(db.Text)
+    __tablename__ = "law1"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True) # 编号
+    category = db.Column(db.String(100), unique=True)  # 类别
+    catalog = db.Column(db.String(100)) # 目录
+    keywords = db.Column(db.String(100)) # 关键词
+    content = db.Column(db.Text) # 内容
+    enactment = db.Column(db.String(100)) # 颁布单位
+    number_reference = db.Column(db.String(100)) # 参考号
+    date_promulgation = db.Column(db.DateTime, index=True, default=datetime.now)
+    date_execution = db.Column(db.DateTime, index=True, default=datetime.now)
+    timeliness = db.Column(db.String(100))
+    level = db.Column(db.String(100))
 '''
 if __name__ == "__main__":
     db.create_all() # 创建所有的数据表
