@@ -22,7 +22,7 @@ class User(db.Model, UserMixin):
 
 # 法律条文数据模型
 class Law(db.Model):
-    __tablename__ = "law1"
+    __tablename__ = "law2"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True) # 编号
     category = db.Column(db.String(100), unique=True)  # 类别
     catalog = db.Column(db.String(100)) # 目录
