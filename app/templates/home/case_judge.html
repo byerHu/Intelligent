@@ -8,15 +8,16 @@
         <a class="btn btn-default" href="#" role="button">执行案件</a>
 
         <div style="margin:20px;">
-            案件信息 <input type="text" style="margin:20px;"> <input type="file">
+            案件信息 <input type="text" style="margin:20px;" id="case_infor">
+            <input type="file">
         </div>
 
         <div class="row">
             <div class="col-md-1" style="margin:0 20px;">案件描述</div>
             <div class="col-md-6">
-                <textarea cols="60" rows="25"></textarea>
+                <textarea cols="60" rows="25" id="case_description"></textarea>
                 <button class="btn btn-info">清空</button>
-                <button class="btn btn-info">提交</button>
+                <button class="btn btn-info" data-toggle="modal" data-target="#myModal" onclick="show1()">提交</button>
             </div>
             <div class="col-md-4">
                 <div>
@@ -178,6 +179,45 @@
             </div>
 
         </div>
-    </div>
 
+
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+       <!-- <h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
+      </div>
+      <div class="modal-body" id="contain_content">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/jquery-2.1.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/nav.js') }}"></script>
+<script>
+function show1(){
+ var content = document.getElementById("contain_content");
+ var mobi = $("#case_infor").val();
+ var case_des = document.getElementById("case_description");
+ //case_des_text = case_des.innerHTML;
+ //alert(case_des_text);
+    var text = $('#case_description').val()
+ content.innerHTML = mobi + "<br/>" + text;
+
+}
+
+
+
+</script>
 {% endblock %}
+
+

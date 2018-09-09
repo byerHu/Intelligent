@@ -1,23 +1,60 @@
 {% extends "home/nav.html" %}
+{% block css %}
+  <style>
+    .search-input {
+        border-radius: 15px;
+        outline: none;
+    }
+
+    .search-btn {
+        color: rgb(255, 255, 255);
+        background-color: rgb(50, 204, 255);
+    }
+
+    .search-a {
+        display: inline-block;
+        height: 30px;
+        line-height: 30px;
+        margin-right: 24px;
+    }
+
+    .select-a {
+        display: inline-block;
+        height: 20px;
+        line-height: 20px;
+        margin-left: 24px;
+    }
+    #distance{
+        margin-top:60px;
+    }
+</style>
+{% endblock %}
 {% block content %}
+
 <link rel="stylesheet" type="text/css" href="../static/css/index2.css">
 <div class="container">
-	<div class="col-md-12">
-		<form class="navbar-form navbar-left" role="search">
-		  <div class="form-group">
-		    <input type="text" class="form-control" placeholder="Search">
-		  </div>
-		  <button type="submit" class="btn btn-default">搜索</button>
-		</form>
-		<a href="#">热搜</a>
-		<a href="#">知识产权</a>
-		<a href="#">合同</a>
-		<a href="#">盗窃</a>
-		<a href="#">离婚</a>
-	</div>
+	<div class="row">
+    <div class="col-md-1">LOGO</div>
+    <div class="col-md-6">
+        <div class="search">
+            <form action="{{ url_for('home.search') }}" method="get">
+                <input class="search-input" style="width:75%;height: 30px;text-align: center;" type="text"
+                       placeholder="请输入您要搜索的内容..." name="search_key" required>
+                <button class="search-btn" style="width:20%;height: 30px;" type="submit">搜索</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <a class="search-a" href="#">热搜</a>
+        <a class="search-a" href="#">盗窃</a>
+        <a class="search-a" href="#">知识产权</a>
+        <a class="search-a" href="#">合同</a>
+        <a class="search-a" href="#">离婚</a>
+    </div>
+</div>
 
 	<!-- 切换 -->
-	<div class="row">
+	<div class="row" id = "distance">
 		<div class="col-md-4">
 		  <ul class="nav nav-tabs nav-stacked" role="tablist">
 		    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">所有</a></li>
