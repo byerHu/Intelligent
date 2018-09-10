@@ -22,16 +22,27 @@
     <script>
         var links =
             [
-                {source: '{{ res.catalog }}', target: '{{ res.keywords }}', 'rela': '关键词', type: 'resolved'},
-                {source: '{{ res.catalog }}', target: '{{ res.date_execution }}', 'rela': '执行日期', type: 'resolved'},
-                {source: '{{ res.catalog }}', target: '{{ res.enactment }}', 'rela': '颁布单位', type: 'resolved'},
-                {source: '{{ res.catalog }}', target: '{{ res.date_promulgation }}', 'rela': '颁布日期', type: 'resolved'},
-                {source: '{{ res.catalog }}', target: '{{ res.category }}', 'rela': '类别', type: 'resolved'},
-                {source: '{{ res.catalog }}', target: '{{ res.timeliness }}', 'rela': '时效性', type: 'resolved'},
-                {#{source: '刑法第二条', target: '{{ res.catalog }}', 'rela': '相识度', type: 'resolved'},#}
-                {#{source: '刑法第二条', target: 'haha', 'rela': '内容', type: 'resolved'},#}
-                {#{source: '刑法第二条', target: '2019', 'rela': '颁布时间', type: 'resolved'},#}
-                {#{source: '刑法第二条', target: '深圳', 'rela': '颁布地点', type: 'resolved'},#}
+                {source: '{{ res[0].catalog }}', target: '{{ res[0].keywords }}', 'rela': '关键词', type: 'resolved'},
+                {source: '{{ res[0].catalog }}', target: '{{ res[0].date_execution }}', 'rela': '执行日期', type: 'resolved'},
+                {source: '{{ res[0].catalog }}', target: '{{ res[0].enactment }}', 'rela': '颁布单位', type: 'resolved'},
+                {source: '{{ res[0].catalog }}', target: '{{ res[0].date_promulgation }}', 'rela': '颁布日期', type: 'resolved'},
+                {source: '{{ res[0].catalog }}', target: '{{ res[0].category }}', 'rela': '类别', type: 'resolved'},
+                {source: '{{ res[0].catalog }}', target: '{{ res[0].timeliness }}', 'rela': '时效性', type: 'resolved'},
+                {source: '{{ res[1].catalog }}', target: '{{ res[0].catalog }}', 'rela': '{{ res[0].degree_1 }}', type: 'resolved'},
+                {source: '{{ res[1].catalog }}', target: '{{ res[1].keywords }}', 'rela': '关键词', type: 'resolved'},
+                {source: '{{ res[1].catalog }}', target: '{{ res[1].date_execution }}', 'rela': '执行日期', type: 'resolved'},
+                {source: '{{ res[2].catalog }}', target: '{{ res[1].enactment }}', 'rela': '颁布单位', type: 'resolved'},
+                {source: '{{ res[2].catalog }}', target: '{{ res[1].date_promulgation }}', 'rela': '颁布日期', type: 'resolved'},
+                {source: '{{ res[2].catalog }}', target: '{{ res[1].category }}', 'rela': '类别', type: 'resolved'},
+                {source: '{{ res[2].catalog }}', target: '{{ res[1].timeliness }}', 'rela': '时效性', type: 'resolved'},
+                {source: '{{ res[2].catalog }}', target: '{{ res[0].catalog }}', 'rela': '{{ res[0].degree_2 }}', type: 'resolved'},
+                {source: '{{ res[2].catalog }}', target: '{{ res[2].keywords }}', 'rela': '关键词', type: 'resolved'},
+                {source: '{{ res[2].catalog }}', target: '{{ res[2].date_execution }}', 'rela': '执行日期', type: 'resolved'},
+                {source: '{{ res[2].catalog }}', target: '{{ res[2].enactment }}', 'rela': '颁布单位', type: 'resolved'},
+                {source: '{{ res[2].catalog }}', target: '{{ res[2].date_promulgation }}', 'rela': '颁布日期', type: 'resolved'},
+                {source: '{{ res[2].catalog }}', target: '{{ res[2].category }}', 'rela': '类别', type: 'resolved'},
+                {source: '{{ res[2].catalog }}', target: '{{ res[2].timeliness }}', 'rela': '时效性', type: 'resolved'},
+
             ];
         var nodes = {};
         links.forEach(function (link) {

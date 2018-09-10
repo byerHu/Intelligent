@@ -34,6 +34,11 @@ class Law(db.Model):
     date_execution = db.Column(db.DateTime, index=True, default=datetime.now)
     timeliness = db.Column(db.String(100))
     level = db.Column(db.String(100))
+    similarity_1 = db.Column(db.Integer)
+    degree_1 = db.Column(db.String(100))
+    similarity_2 = db.Column(db.Integer)
+    degree_2 = db.Column(db.String(100))
+
 '''
 if __name__ == "__main__":
     db.create_all() # 创建所有的数据表
