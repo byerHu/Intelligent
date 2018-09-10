@@ -24,16 +24,16 @@ def search():
     words = ['%' + data + '%']
     rule = and_(*[Law.keywords.like(w) for w in words])
     res_1 = Law.query.filter(rule).first()
-    res_2 = Law.query.filter_by(id=res_1.similarity_1).first()
-    res_3 = Law.query.filter_by(id=res_1.similarity_2).first()
-    res = []
-    res.append(res_1)
-    res.append(res_2)
-    res.append(res_3)
-    if not res:
-        return redirect(url_for('home.index'))
-    else:
+    if res_1:
+        res_2 = Law.query.filter_by(id=res_1.similarity_1).first()
+        res_3 = Law.query.filter_by(id=res_1.similarity_2).first()
+        res = []
+        res.append(res_1)
+        res.append(res_2)
+        res.append(res_3)
         return render_template('home/search.html', res=res)
+    else:
+        return redirect(url_for('home.index'))
 
 
 # 条文详情页
