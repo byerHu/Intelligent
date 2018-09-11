@@ -32,9 +32,9 @@
                 {source: '{{ res[1].catalog }}', target: '{{ res[1].keywords }}', 'rela': '关键词', type: 'resolved'},
                 {source: '{{ res[1].catalog }}', target: '{{ res[1].date_execution }}', 'rela': '执行日期', type: 'resolved'},
                 {source: '{{ res[2].catalog }}', target: '{{ res[1].enactment }}', 'rela': '颁布单位', type: 'resolved'},
-                {source: '{{ res[2].catalog }}', target: '{{ res[1].date_promulgation }}', 'rela': '颁布日期', type: 'resolved'},
-                {source: '{{ res[2].catalog }}', target: '{{ res[1].category }}', 'rela': '类别', type: 'resolved'},
-                {source: '{{ res[2].catalog }}', target: '{{ res[1].timeliness }}', 'rela': '时效性', type: 'resolved'},
+                {source: '{{ res[1].catalog }}', target: '{{ res[1].date_promulgation }}', 'rela': '颁布日期', type: 'resolved'},
+                {source: '{{ res[1].catalog }}', target: '{{ res[1].category }}', 'rela': '类别', type: 'resolved'},
+                {source: '{{ res[1].catalog }}', target: '{{ res[1].timeliness }}', 'rela': '时效性', type: 'resolved'},
                 {source: '{{ res[2].catalog }}', target: '{{ res[0].catalog }}', 'rela': '{{ res[0].degree_2 }}', type: 'resolved'},
                 {source: '{{ res[2].catalog }}', target: '{{ res[2].keywords }}', 'rela': '关键词', type: 'resolved'},
                 {source: '{{ res[2].catalog }}', target: '{{ res[2].date_execution }}', 'rela': '执行日期', type: 'resolved'},
@@ -123,13 +123,26 @@
             .style("fill", function (node) {
                 var color;
                 var link = links[node.index];
-                color = "#F9EBF9";
-                return color;
+                {#color = "#F9EBF9";#}
+                console.log(node["name"]);
+                console.log(node["name"].length);
+                console.log(link.source.name)
+                if(node.name == link.source.name){
+                    {#console.log("hahah");#}
+                    color = "#ff3";
+                    return color;
+                }else{
+                    color = "#F9EBF9";
+                    {#console.log("hahah");#}
+                    return color;
+                }
+
+
             })
             .style('stroke', function (node) {
                 var color;
                 var link = links[node.index];
-                color = "#A254A2";
+                color = "red";
                 return color;
             })
             .attr("r", 28)
