@@ -51,6 +51,24 @@ class Case(db.Model):
     accusation = db.Column(db.String(255))
     relevant_articles = db.Column(db.String(255))
     fact = db.Column(db.Text)
+
+# case案件
+class Cases(db.Model):
+    __tablename__ = "case"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)  # 编号
+    title = db.Column(db.String(100), unique=True)
+    content = db.Column(db.Text)
+    hotword1 = db.Column(db.Text)
+    hotword2 = db.Column(db.Text)
+    name = db.Column(db.String(255))
+    time = db.Column(db.String(255))
+    header = db.Column(db.Text)
+    infact = db.Column(db.Text)
+    according_to = db.Column(db.Text)
+    judicial_decision = db.Column(db.Text)
+    tails = db.Column(db.Text)
+    law_1 = db.Column(db.String(255))
+    law_2 = db.Column(db.String(255))
 '''
 if __name__ == "__main__":
     db.create_all() # 创建所有的数据表

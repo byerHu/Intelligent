@@ -20,7 +20,6 @@
         }
 
         .key-words-content {
-            height: 100px;
             border: 1px solid #ddd;
         }
         .list-group-item {
@@ -38,24 +37,18 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
-                                                              data-toggle="tab">描述</a></li>
+                                                              data-toggle="tab">头部</a></li>
                     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"
-                                               data-toggle="tab">当事人</a>
-                    </li>
-                    <li role="presentation"><a href="#facts" aria-controls="facts" role="tab"
                                                data-toggle="tab">事实</a>
                     </li>
+                    <li role="presentation"><a href="#facts" aria-controls="facts" role="tab"
+                                               data-toggle="tab">依据</a>
+                    </li>
                     <li role="presentation"><a href="#case-res" aria-controls="case-res" role="tab"
-                                               data-toggle="tab">案由</a>
+                                               data-toggle="tab">判决</a>
                     </li>
                     <li role="presentation"><a href="#law-provision" aria-controls="law-provision" role="tab"
-                                               data-toggle="tab">法条</a>
-                    </li>
-                    <li role="presentation"><a href="#accusation" aria-controls="accusation" role="tab"
-                                               data-toggle="tab">罪名</a>
-                    </li>
-                    <li role="presentation"><a href="#judgment" aria-controls="judgment" role="tab"
-                                               data-toggle="tab">判决</a>
+                                               data-toggle="tab">底部</a>
                     </li>
                     <li role="presentation"><a href="#view-judgment" aria-controls="view-judgment" role="tab"
                                                data-toggle="tab">查看判决书</a>
@@ -64,38 +57,33 @@
                 </ul>
 
                 <!-- Tab panes -->
-                <div class="tab-content" style="border:1px solid #ccc;height:180px;">
+                <div class="tab-content" style="border:1px solid #ccc;">
                     <div role="tabpanel" class="tab-pane active" id="home">
-                        法律条文xxx <br>
-                        xxx <br>
-                        xxx
+                        {{ case.header }}
                     </div>
                     <div role="tabpanel" class="tab-pane" id="profile">
-                        xxx
+                        {{ case.infact }}
                     </div>
                     <div role="tabpanel" class="tab-pane" id="facts">
-                        2
+                        {{ case.according_to }}
                     </div>
                     <div role="tabpanel" class="tab-pane" id="case-res">
-                        3
+                        {{ case.judicial_decision }}
                     </div>
                     <div role="tabpanel" class="tab-pane" id="law-provision">
-                        9
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="accusation">
-                        4
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="judgment">
-                        5
+                        {{ case.tails }}
                     </div>
                     <div role="tabpanel" class="tab-pane" id="view-judgment">
-                        6
+                        {{ case.content }}
                     </div>
                 </div>
 
 
                 <p class="key-words">关键词</p>
-                <div class="key-words-content">kk</div>
+                <div class="key-words-content">
+                    <p>{{ case.hotword1 }}</p>
+                    <p>{{ case.hotword2 }}</p>
+                </div>
             </div>
         </div>
         <div class="col-md-4">
@@ -115,10 +103,8 @@
                 <div class="tab-content" style="border:1px solid #ccc;height:150px;">
                     <div role="tabpanel" class="tab-pane active" id="similiar-case">
                         <ul class="list-group">
-                            <li class="list-group-item">相关法条1</li>
-                            <li class="list-group-item">相关法条2</li>
-                            <li class="list-group-item">相关法条3</li>
-                            <li class="list-group-item">相关法条4</li>
+                            <li class="list-group-item">{{ case.law_1 }}</li>
+                            <li class="list-group-item">{{ case.law_2 }}</li>
                         </ul>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="trend-distribution-1">

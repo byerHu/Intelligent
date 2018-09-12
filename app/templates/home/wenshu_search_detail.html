@@ -1,0 +1,29 @@
+{% extends "home/nav.html" %}
+
+{% block css %}
+    <style>
+        .search-detail-classify {
+            display: block;
+            width: 80px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            background: red;
+            border: 1px solid #dddddd;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    {% include "home/grid.html" %}
+
+    <div class="row" style="margin-top: 40px;">
+        <div class="col-md-12">
+            <p class="search-detail-classify">相关案件</p>
+            <ul class="list-group">
+                {% for i in cases %}
+                <li class="list-group-item"><a href="{{ url_for('home.case_desc',id=i.id) }}">{{ i.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

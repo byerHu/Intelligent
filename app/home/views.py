@@ -3,7 +3,7 @@ from . import home  # 从当前目录导入home蓝图
 from flask import render_template, request, flash, redirect, url_for, session
 from app.home.forms import RegisterForm, LoginForm, SearchForm
 from app import app
-from app.models import User, Law, Case
+from app.models import User, Law, Case, Cases
 from app import db, app
 from flask_login import login_user, logout_user, login_required, current_user
 from sqlalchemy import and_
@@ -89,10 +89,11 @@ def data():
 
 
 # 案件描述页
-@home.route('/case/desc')
+@home.route('/case/desc/<id>')
 @login_required
-def case_desc():
-    return render_template('home/case_desc.html')
+def case_desc(id):
+    case = Cases.query.filter_by(id=id).first()
+    return render_template('home/case_desc.html',case=case)
 
 
 # 搜索明细
@@ -180,3 +181,11 @@ def case_judge():
 @login_required
 def judgmentdoc():
     return render_template('home/judgmentdoc.html')
+
+
+# 文书明细
+@home.route('/wenshu/detail/')
+@login_required
+def wenshu_search_detail():
+    cases = Cases.query.limit(10)
+    return render_template('home/wenshu_search_detail.html', cases=cases)
