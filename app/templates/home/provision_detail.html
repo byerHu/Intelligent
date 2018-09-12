@@ -133,7 +133,7 @@
                         <ul class="list-group">
                             {% for i in res %}
                                 <li class="list-group-item"><a
-                                        href="{{ url_for('home.case_desc') }}">{{ i.catalog }}</a></li>
+                                        href="{{ url_for('home.case_desc',id=i.id) }}">{{ i.catalog }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
