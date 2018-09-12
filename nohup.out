@@ -2159,3 +2159,127 @@ AttributeError: 'NoneType' object has no attribute 'criminals'
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 250-502-475
+183.236.0.86 - - [12/Sep/2018 22:12:47] "[37mGET / HTTP/1.1[0m" 200 -
+183.236.0.86 - - [12/Sep/2018 22:12:49] "[37mGET /legalprovision/ HTTP/1.1[0m" 200 -
+183.236.0.86 - - [12/Sep/2018 22:12:49] "[33mGET /static/css/index2.css HTTP/1.1[0m" 404 -
+183.236.0.86 - - [12/Sep/2018 22:12:49] "[37mGET / HTTP/1.1[0m" 200 -
+183.236.0.86 - - [12/Sep/2018 22:12:54] "[37mGET /search/?search_key=%E7%8A%AF%E7%BD%AA HTTP/1.1[0m" 200 -
+183.236.0.86 - - [12/Sep/2018 22:12:55] "[37mGET /search/detail/1 HTTP/1.1[0m" 200 -
+183.236.0.86 - - [12/Sep/2018 22:12:56] "[1m[35mGET /provision/detail/1 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2309, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2295, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1741, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/usr/local/lib/python3.5/dist-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/var/www/Intelligent/app/home/views.py", line 52, in provision_detail
+    return render_template('home/provision_detail.html', res=res)
+  File "/usr/local/lib/python3.5/dist-packages/flask/templating.py", line 135, in render_template
+    context, ctx.app)
+  File "/usr/local/lib/python3.5/dist-packages/flask/templating.py", line 117, in _render
+    rv = template.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/jinja2/environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/usr/local/lib/python3.5/dist-packages/jinja2/environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/jinja2/_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "/var/www/Intelligent/app/templates/home/provision_detail.html", line 1, in top-level template code
+    {% extends "home/nav.html" %}
+  File "/var/www/Intelligent/app/templates/home/nav.html", line 69, in top-level template code
+    {% block content %}{% endblock %}
+  File "/var/www/Intelligent/app/templates/home/provision_detail.html", line 136, in block "content"
+    href="{{ url_for('home.case_desc') }}">{{ i.catalog }}</a></li>
+  File "/usr/local/lib/python3.5/dist-packages/flask/helpers.py", line 356, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2061, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/helpers.py", line 345, in url_for
+    force_external=external)
+  File "/usr/local/lib/python3.5/dist-packages/werkzeug/routing.py", line 1776, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'home.case_desc'. Did you forget to specify values ['id']?
+183.236.0.86 - - [12/Sep/2018 22:12:56] "[37mGET /provision/detail/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+183.236.0.86 - - [12/Sep/2018 22:12:56] "[37mGET /provision/detail/1?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+183.236.0.86 - - [12/Sep/2018 22:12:56] "[37mGET /provision/detail/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+183.236.0.86 - - [12/Sep/2018 22:12:56] "[37mGET /provision/detail/1?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+183.236.0.86 - - [12/Sep/2018 22:12:56] "[37mGET /provision/detail/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+183.236.0.86 - - [12/Sep/2018 22:12:57] "[37mGET /provision/detail/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+183.236.0.86 - - [12/Sep/2018 22:13:08] "[1m[35mGET /provision/detail/1 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2309, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2295, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1741, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/usr/local/lib/python3.5/dist-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/var/www/Intelligent/app/home/views.py", line 52, in provision_detail
+    return render_template('home/provision_detail.html', res=res)
+  File "/usr/local/lib/python3.5/dist-packages/flask/templating.py", line 135, in render_template
+    context, ctx.app)
+  File "/usr/local/lib/python3.5/dist-packages/flask/templating.py", line 117, in _render
+    rv = template.render(context)
+  File "/usr/local/lib/python3.5/dist-packages/jinja2/environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/usr/local/lib/python3.5/dist-packages/jinja2/environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/jinja2/_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "/var/www/Intelligent/app/templates/home/provision_detail.html", line 1, in top-level template code
+    {% extends "home/nav.html" %}
+  File "/var/www/Intelligent/app/templates/home/nav.html", line 69, in top-level template code
+    {% block content %}{% endblock %}
+  File "/var/www/Intelligent/app/templates/home/provision_detail.html", line 136, in block "content"
+    href="{{ url_for('home.case_desc') }}">{{ i.catalog }}</a></li>
+  File "/usr/local/lib/python3.5/dist-packages/flask/helpers.py", line 356, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2061, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/helpers.py", line 345, in url_for
+    force_external=external)
+  File "/usr/local/lib/python3.5/dist-packages/werkzeug/routing.py", line 1776, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'home.case_desc'. Did you forget to specify values ['id']?
+183.236.0.86 - - [12/Sep/2018 22:13:08] "[37mGET /provision/detail/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+183.236.0.86 - - [12/Sep/2018 22:13:08] "[37mGET /provision/detail/1?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+183.236.0.86 - - [12/Sep/2018 22:13:08] "[37mGET /provision/detail/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+183.236.0.86 - - [12/Sep/2018 22:13:08] "[37mGET /provision/detail/1?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+183.236.0.86 - - [12/Sep/2018 22:13:09] "[37mGET /provision/detail/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+120.204.17.71 - - [12/Sep/2018 22:13:56] "[37mGET /provision/detail/1?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
