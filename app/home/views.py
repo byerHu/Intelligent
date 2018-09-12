@@ -10,6 +10,7 @@ from sqlalchemy import and_
 import json
 import os
 
+
 # 首页
 @home.route("/")
 def index():
@@ -21,7 +22,6 @@ def index():
 @login_required
 def search():
     data = request.args.get('search_key')
-    print(data)
     words = ['%' + data + '%']
     rule = and_(*[Law.keywords.like(w) for w in words])
     res_1 = Law.query.filter(rule).first()
@@ -38,15 +38,25 @@ def search():
 
 
 # 条文详情页
-@home.route('/provision/detail')
+@home.route('/provision/detail/<id>')
 @login_required
-def provision_detail():
-    return render_template('home/provision_detail.html')
+def provision_detail(id):
+    res_1 = Law.query.filter_by(id=id).first()
+    if res_1:
+        res_2 = Law.query.filter_by(id=res_1.similarity_1).first()
+        res_3 = Law.query.filter_by(id=res_1.similarity_2).first()
+        res = []
+        res.append(res_1)
+        res.append(res_2)
+        res.append(res_3)
+    return render_template('home/provision_detail.html', res=res)
 
 
 mydata = ""
 
 fname = os.getcwd() + "/app/templates/home/data.json"
+
+
 # 文件上传页
 @home.route('/upload')
 @login_required
@@ -67,8 +77,6 @@ def upload():
     a = {}
     a['site'] = res
     mydata = json.dumps(a, ensure_ascii=False).encode("utf8")
-    print(mydata)
-    print(fname)
     with open(fname, 'wb') as f:
         f.write(mydata)
         f.close()
@@ -88,10 +96,18 @@ def case_desc():
 
 
 # 搜索明细
-@home.route('/search/detail')
+@home.route('/search/detail/<res>')
 @login_required
-def search_detail():
-    return render_template('home/search_detail.html')
+def search_detail(res):
+    res_1 = Law.query.filter_by(id=res).first()
+    if res_1:
+        res_2 = Law.query.filter_by(id=res_1.similarity_1).first()
+        res_3 = Law.query.filter_by(id=res_1.similarity_2).first()
+        res = []
+        res.append(res_1)
+        res.append(res_2)
+        res.append(res_3)
+    return render_template('home/search_detail.html', res=res)
 
 
 # 法律条文

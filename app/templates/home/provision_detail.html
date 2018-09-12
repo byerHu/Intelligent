@@ -114,45 +114,44 @@
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
                                                               data-toggle="tab">法律条文</a></li>
-                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"
-                                               data-toggle="tab">适用案件</a>
-                    </li>
+                    {#                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"#}
+                    {#                                               data-toggle="tab">适用案件</a>#}
+                    {#                    </li>#}
                 </ul>
 
                 <!-- Tab panes -->
-                <div class="tab-content" style="border:1px solid #ccc;height:180px;">
+                <div class="tab-content" style="border:1px solid #ccc;">
                     <div role="tabpanel" class="tab-pane active" id="home">
-                        法律条文xxx <br>
-                        xxx <br>
-                        xxx
+                        <p>{{ res[0].catalog }}</p>
+                        <p>内容：{{ res[0].content }}</p>
+                        <p>执行日期：{{ res[0].date_execution }}</p>
+                        <p>颁布单位：{{ res[0].enactment }}</p>
+                        <p>颁布日期：{{ res[0].date_promulgation }}</p>
+                        <p>时效性：{{ res[0].timeliness }}</p>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="profile">
                         <ul class="list-group">
-                            <li class="list-group-item"><a href="{{ url_for('home.case_desc') }}">适用案件1</a></li>
-                            <li class="list-group-item"><a href="{{ url_for('home.case_desc') }}">适用案件2</a></li>
-                            <li class="list-group-item"><a href="{{ url_for('home.case_desc') }}">适用案件3</a></li>
-                            <li class="list-group-item"><a href="{{ url_for('home.case_desc') }}">适用案件4</a></li>
-                            <li class="list-group-item"><a href="{{ url_for('home.case_desc') }}">适用案件5</a></li>
+                            {% for i in res %}
+                                <li class="list-group-item"><a
+                                        href="{{ url_for('home.case_desc') }}">{{ i.catalog }}</a></li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
             </div>
 
             <p class="key-words">关键词</p>
-            <div class="key-words-content">kk</div>
+            <div class="key-words-content">
+                {{ res[0].keywords }}
+            </div>
         </div>
 
         <div class="col-md-4">
             <p class="relative-law">相关法条</p>
             <ul class="list-group">
-                <li class="list-group-item">相关法条1</li>
-                <li class="list-group-item">相关法条2</li>
-                <li class="list-group-item">相关法条3</li>
-                <li class="list-group-item">相关法条4</li>
-                <li class="list-group-item">相关法条5</li>
-                <li class="list-group-item">相关法条6</li>
-                <li class="list-group-item">相关法条7</li>
-                <li class="list-group-item">相关法条8</li>
+                {% for i in res %}
+                    <li class="list-group-item"><a href="{{ url_for('home.provision_detail',id=i.id) }}">{{ i.catalog }}</a></li>
+                {% endfor %}
             </ul>
         </div>
     </div>
