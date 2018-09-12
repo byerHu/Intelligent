@@ -6,10 +6,12 @@
         <a class="btn btn-default" href="#" role="button">行政案件</a>
         <a class="btn btn-default" href="#" role="button">赔偿案件</a>
         <a class="btn btn-default" href="#" role="button">执行案件</a>
-
         <div style="margin:20px;">
-            案件信息 <input type="text" style="margin:20px;" id="case_infor">
-            <input type="file">
+{#            案件信息 <input type="text" style="margin:20px;" id="case_infor">#}
+
+{#                <input type="file" id="upfile" multiple="multiple">#}
+
+            <div class="FileArea"></div>
         </div>
 
         <div class="row">
@@ -17,13 +19,14 @@
             <div class="col-md-6">
                 <textarea cols="60" rows="25" id="case_description"></textarea>
                 <button class="btn btn-info">清空</button>
-                <button class="btn btn-info" data-toggle="modal" data-target="#myModal" onclick="show1()">提交</button>
+                <button class="btn btn-info tijiao" data-toggle="modal" data-target="#myModal" onclick="show1()">提交
+                </button>
             </div>
             <div class="col-md-4">
                 <div>
-                选择区域
-                <select id="province" runat="server" onchange="selectprovince(this);" style=" width:95px;"></select>
-                <select id="city" runat="server" style=" width:95px;"></select>
+                    选择区域
+                    <select id="province" runat="server" onchange="selectprovince(this);" style=" width:95px;"></select>
+                    <select id="city" runat="server" style=" width:95px;"></select>
                 </div>
 
                 <script type="text/javascript">
@@ -147,6 +150,7 @@
                             ddlCity.appendChild(optioncity);
                         }
                     }
+
                     function indexof(obj, value) {
                         var k = 0;
                         for (; k < obj.length; k++) {
@@ -155,6 +159,7 @@
                         }
                         return k;
                     }
+
                     function selectprovince(obj) {
                         ddlCity.options.length = 0;//clear
                         var index = indexof(list1, obj.value);
@@ -180,44 +185,81 @@
 
         </div>
 
-
-
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-       <!-- <h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
-      </div>
-      <div class="modal-body" id="contain_content">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <!-- <h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
+                    </div>
+                    <div class="modal-body">
+                        <div>案件描述</div>
+                        <hr>
+                        <p id="contain_content"></p>
+                        <hr>
+                        <div>判决结果</div>
+                        <button id="look" type="button" class="btn btn-info">点击查看判决结果</button>
+                        <hr>
+                        <div id="showResult" style="display: none;">
+                            <p>当事人：<span id="criminals"></span></p>
+                            <p>死刑：<span id="death_penalty"></span></p>
+                            <p>有期徒刑：<span id="imprisonment"></span></p>
+                            <p>无期徒刑：<span id="life_imprisonment"></span></p>
+                            <p>罚款：<span id="punish_of_money"></span></p>
+                            <p>罪名：<span id="accusation"></span></p>
+                            <p>依据相关的法条：<span id="relevant_articles"></span></p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-  </div>
     <script type="text/javascript" src="{{ url_for('static',filename='js/jquery-2.1.1.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static',filename='js/nav.js') }}"></script>
-<script>
-function show1(){
- var content = document.getElementById("contain_content");
- var mobi = $("#case_infor").val();
- var case_des = document.getElementById("case_description");
- //case_des_text = case_des.innerHTML;
- //alert(case_des_text);
-    var text = $('#case_description').val()
- content.innerHTML = mobi + "<br/>" + text;
+    <script>
+        function show1() {
+            var content = document.getElementById("contain_content");
+            {#var mobi = $("#case_infor").val();#}
+            var case_des = document.getElementById("case_description");
+            //case_des_text = case_des.innerHTML;
+            //alert(case_des_text);
+            var text = $('#case_description').val()
+            content.innerHTML =  text;
+            $.ajax({
+              type: 'GET',
+              url: "{{ url_for('home.upload') }}"+"?text="+text,
+              success: function (data) {
+              }
+            });
+        }
 
-}
+        $("#look").click(function () {
+            console.log("hah");
+            $.ajax({
+              type: 'GET',
+              url: "{{ url_for('home.data') }}",
+              success: function (data) {
+                  obj = JSON.parse(data);
+                  $("#criminals").html(obj.site[0].criminals)
+                  $("#death_penalty").html(obj.site[0].death_penalty)
+                  $("#imprisonment").html(obj.site[0].imprisonment)
+                  $("#life_imprisonment").html(obj.site[0].life_imprisonment)
+                  $("#punish_of_money").html(obj.site[0].punish_of_money)
+                  $("#accusation").html(obj.site[0].accusation)
+                  $("#relevant_articles").html(obj.site[0].relevant_articles)
+                  $("#showResult").css("display","block");
+              },
+            });
+        })
 
 
-
-</script>
+    </script>
 {% endblock %}
 
 

@@ -3,11 +3,12 @@ from . import home  # 从当前目录导入home蓝图
 from flask import render_template, request, flash, redirect, url_for, session
 from app.home.forms import RegisterForm, LoginForm, SearchForm
 from app import app
-from app.models import User, Law
+from app.models import User, Law, Case
 from app import db, app
 from flask_login import login_user, logout_user, login_required, current_user
 from sqlalchemy import and_
-
+import json
+import os
 
 # 首页
 @home.route("/")
@@ -41,6 +42,42 @@ def search():
 @login_required
 def provision_detail():
     return render_template('home/provision_detail.html')
+
+
+mydata = ""
+
+fname = os.getcwd() + "/app/templates/home/data.json"
+# 文件上传页
+@home.route('/upload')
+@login_required
+def upload():
+    data = request.args.get('text')
+    print(data)
+    case = Case.query.filter_by(fact=data).first()
+    js = {}
+    js["criminals"] = case.criminals
+    js["death_penalty"] = case.death_penalty
+    js["imprisonment"] = case.imprisonment
+    js["life_imprisonment"] = case.life_imprisonment
+    js["punish_of_money"] = case.punish_of_money
+    js["accusation"] = case.accusation
+    js["relevant_articles"] = case.relevant_articles
+    res = []
+    res.append(js)
+    a = {}
+    a['site'] = res
+    mydata = json.dumps(a, ensure_ascii=False).encode("utf8")
+    print(mydata)
+    print(fname)
+    with open(fname, 'wb') as f:
+        f.write(mydata)
+        f.close()
+    return render_template('home/case_judge.html')
+
+
+@home.route('/data/')
+def data():
+    return render_template('home/data.json')
 
 
 # 案件描述页
@@ -116,7 +153,7 @@ def logout():
 
 
 # 案件研判
-@home.route('/case/judge')
+@home.route('/case/judge', methods=['GET', 'POST'])
 @login_required
 def case_judge():
     return render_template('home/case_judge.html')

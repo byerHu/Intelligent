@@ -39,6 +39,18 @@ class Law(db.Model):
     similarity_2 = db.Column(db.Integer)
     degree_2 = db.Column(db.String(100))
 
+# 案件模型
+class Case(db.Model):
+    __tablename__ = "cail_0518"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True) # 编号
+    criminals = db.Column(db.String(100), unique=True)  # 类别
+    death_penalty = db.Column(db.String(255))
+    imprisonment = db.Column(db.String(255))
+    life_imprisonment = db.Column(db.String(255))
+    punish_of_money = db.Column(db.Integer)
+    accusation = db.Column(db.String(255))
+    relevant_articles = db.Column(db.String(255))
+    fact = db.Column(db.Text)
 '''
 if __name__ == "__main__":
     db.create_all() # 创建所有的数据表
